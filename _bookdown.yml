@@ -12,6 +12,7 @@ rmd_files:
     "Names-values.Rmd",
     "Vectors.Rmd",
     "Subsetting.Rmd",
+    "Control-flow.Rmd",
     "Functions.Rmd",
     "Environments.Rmd",
     "Conditions.Rmd",
@@ -30,6 +31,7 @@ rmd_files:
     "OO-tradeoffs.Rmd",
 
     "Meta.Rmd",
+    "Big-picture.Rmd",
     "Expressions.Rmd",
     "Quotation.Rmd",
     "Evaluation.Rmd",
@@ -37,8 +39,8 @@ rmd_files:
 
     "Techniques.Rmd",
     "Debugging.Rmd",
-    "Performance.Rmd",
-    "Profiling.Rmd",
+    "Perf-measure.Rmd",
+    "Perf-improve.Rmd",
     "Rcpp.Rmd",
 
     "References.Rmd",

@@ -1,12 +1,14 @@
 # Base types {#base-types}
 
 ## Introduction
+\index{base objects}
+\index{OO objects}
 
 ```{r setup, include = FALSE}
 source("common.R")
 ```
 
-To talk about objects and OOP in R we first need to clear up a fundamental confusion about two uses of the word "object". So far in this book, we've used the word in the general sense captured by John Chambers' pithy quote: "Everything that exists in R is an object". However, while everything _is_ an object, not everything is "object-oriented". This confusion arises because the base objects come from S, and were developed before anyone thought that S might need an OOP system. The tools and nomenclature evolved organically over many years without a single guiding principle.
+To talk about objects and OOP in R we first need to clear up a fundamental confusion about two uses of the word "object". So far in this book, we've used the word in the general sense captured by John Chambers' pithy quote: "Everything that exists in R is an object". However, while everything _is_ an object, not everything is object-oriented. This confusion arises because the base objects come from S, and were developed before anyone thought that S might need an OOP system. The tools and nomenclature evolved organically over many years without a single guiding principle.
 
 Most of the time, the distinction between objects and object-oriented objects is not important. But here we need to get into the nitty gritty details so we'll use the terms __base objects__ and __OO objects__ to distinguish them.
 
@@ -18,13 +20,13 @@ knitr::include_graphics("diagrams/oo-venn.png")
 
 * Section \@ref(base-vs-oo) shows you how to identify base and OO objects.
 
-* Section \@ref(base-types-2) gives a complete set of the base types that all
-  objects are built up from.
-  
-## Base vs OO objects {#base-vs-oo}
+* Section \@ref(base-types-2) gives a complete set of the base types used to build all objects.
+
+## Base versus OO objects {#base-vs-oo}
 \indexc{is.object()}
-\indexc{mode()}
+\indexc{otype()}
 \index{attributes!class}
+\indexc{class()}
 
 To tell the difference between a base and OO object, use `is.object()` or `sloop::otype()`:
 
@@ -55,9 +57,9 @@ sloop::s3_class(x)
 ```
 
 ## Base types {#base-types-2}
-\indexc{mode()}
 \indexc{typeof()}
- 
+\index{base type|see {\texttt{typeof()}}}
+
 While only OO objects have a class attribute, every object has a __base type__:
 
 ```{r}
@@ -73,9 +75,9 @@ https://github.com/wch/r-source/blob/f5bb85782509ddadbcec94ab7648886c2d008bda/sr
 
 In total, there are 25 different base types. They are listed below, loosely grouped according to where they're discussed in this book. These types are most important in C code, so you'll often see them called by their C type names. I've included those in parentheses.
 
-*   Vectors, Chapter \@ref(vectors-chap), include types `NULL` (`NULLSXP`), 
+*   Vectors, Chapter \@ref(vectors-chap), include types `NULL` (`NILSXP`), 
     `logical` (`LGLSXP`), `integer` (`INTSXP`), `double` (`REALSXP`), `complex`
-    (`CPLSXP`), `character` (`STRSXP`), `list` (`VECSXP`), and `raw` (`RAWSXP`).
+    (`CPLXSXP`), `character` (`STRSXP`), `list` (`VECSXP`), and `raw` (`RAWSXP`).
     
     ```{r}
     typeof(NULL)
@@ -130,17 +132,20 @@ In total, there are 25 different base types. They are listed below, loosely grou
     `bytecode` (`BCODESXP`), `promise` (`PROMSXP`), `...` (`DOTSXP`), and 
     `any` (`ANYSXP`).
 
+\indexc{mode()}
 You may have heard of `mode()` and `storage.mode()`. Do not use these functions: they exist only to provide type names that are compatible with S. 
 
 ### Numeric type {#numeric-type}
+\index{numeric vectors}
+\index{vectors!numeric|see {numeric vectors}}
 
-Be careful when talking about the "numeric" type, because R uses "numeric" to mean three slightly different things:
+Be careful when talking about the numeric type, because R uses "numeric" to mean three slightly different things:
 
-1.  In some places numeric is used as an alias for the "double" type. For 
+1.  In some places numeric is used as an alias for the double type. For 
     example `as.numeric()` is identical to `as.double()`, and `numeric()` is
     identical to `double()`.
     
-    (R also occasionally uses "real" instead of double; `NA_real_` is the one 
+    (R also occasionally uses real instead of double; `NA_real_` is the one 
     place that you're likely to encounter this in practice.)
     
 1.  In the S3 and S4 systems, numeric is used as a shorthand for either 

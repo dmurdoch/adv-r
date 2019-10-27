@@ -1,9 +1,10 @@
 \usepackage{booktabs}
 \usepackage{longtable}
-\usepackage[bf,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
 
 \usepackage{framed,color}
-\definecolor{shadecolor}{RGB}{253,253,253}
+\definecolor{shadecolor}{RGB}{242,242,242}
 
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
@@ -11,10 +12,25 @@
 \renewcommand{\floatpagefraction}{0.75}
 \raggedbottom
 
+% tweak deafult fonts
 \usepackage{fontspec}
 \usepackage{xltxtra,xunicode}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
 \setmonofont[Mapping=tex-ansi]{Inconsolata}
+
+% Chinese fonts
+\usepackage{xeCJK}
+
+% box drawing characters
+% <https://tex.stackexchange.com/a/333210/6444>
+\usepackage{newunicodechar}
+\newfontfamily{\fallbackfont}{Andale Mono}
+\DeclareTextFontCommand{\textfallback}{\fallbackfont}
+\newunicodechar{█}{\textfallback{█}}
+\newunicodechar{└}{\textfallback{└}}
+\newunicodechar{─}{\textfallback{─}}
+\newunicodechar{├}{\textfallback{├}}
+\newunicodechar{│}{\textfallback{│}}
 
 % Place links inline
 \let\oldhref\href
@@ -42,6 +58,10 @@
 
 \renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}
 
+\renewenvironment{quote}%
+  {\list{}{\leftmargin=0.5in\rightmargin=0.5in}\item[]\begin{itshape}}%
+  {\end{itshape}\endlist}
+
 % % Colour
 \renewcommand{\KeywordTok} [1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
 \renewcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
@@ -57,6 +77,9 @@
 \renewcommand{\ErrorTok}   [1]{\textcolor[rgb]{1.00,0.00,0.00}{{#1}}}
 \renewcommand{\NormalTok}  [1]{{#1}}
 
+% No widow lines
+\widowpenalty=10000
+\clubpenalty=10000
 
 \usepackage{makeidx}
 \newcommand{\indexc}[1]{\index{#1@\texttt{#1}}}

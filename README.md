@@ -1,8 +1,8 @@
-# Advanced R programming
+# Advanced R
 
 [![Build Status](https://travis-ci.org/hadley/adv-r.svg?branch=master)](https://travis-ci.org/hadley/adv-r)
 
-This is code and text behind the [Advanced R programming](http://adv-r.hadley.nz)
+This is code and text behind the [Advanced R](http://adv-r.hadley.nz)
 book.  The site is built with [bookdown](https://bookdown.org/yihui/bookdown/).
 
 ## Diagrams
@@ -36,3 +36,25 @@ RMarkdown
 
 * Beware caching: after changing the size of an image you may need to
   clear the cache before it is correctly updated.
+
+To zip files to for publisher:
+
+```
+mkdir crc
+cp _book/_main.tex crc
+cp -r _bookdown_files/*_files crc
+cp -r diagrams crc
+cp -r screenshots crc
+cp -r emoji crc
+cp mina.jpg crc
+cp krantz.cls crc
+cp book.bib crc
+rm crc/diagrams/*.graffle
+
+zip -r adv-r-source.zip crc
+```
+
+## Code of conduct
+
+Please note that Advanced R is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
